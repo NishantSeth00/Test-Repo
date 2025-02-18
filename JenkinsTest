@@ -4,21 +4,7 @@ pipeline{
     stages{
         stage("Compile"){
             steps{
-                echo "Compilation in Progress..."
-                bat "javac Hello.java"
-            }
-        }
-        
-        stage("Complete"){
-            steps{
-                echo "Compilation Complete"
-            }
-        }
-        
-        stage("Run"){
-            steps{
-                echo "Execution in Progress..."
-                bat "java Hello"
+                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '', reportFiles: 'Hello.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
             }
         }
     }
