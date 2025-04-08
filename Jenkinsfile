@@ -1,24 +1,25 @@
-pipeline{
+pipeline {
   agent any
 
-  stages{
-    stage ('Clone Repository'){
-      steps{
+  stages {
+    stage('Clone Repository') {
+      steps {
         git branch: "main", url: "https://github.com/NishantSeth00/Test-Repo.git"
       }
     }
 
-    stage ('Publish HTML'){
-      steps{
+    stage('Publish HTML') {
+      steps {
         publishHTML(
-          target:[
+          target: [
             reportName: "Rendered HTML Page",
             reportDir: ".",
-            reportFile: "hello.html",
+            reportFiles: "hello.html",   // <-- fixed key
             keepAll: true,
             alwaysLinkToLastBuild: true,
             allowMissing: false
-          ])
+          ]
+        )
       }
     }
   }
